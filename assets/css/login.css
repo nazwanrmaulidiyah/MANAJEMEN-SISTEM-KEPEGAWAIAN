@@ -1,0 +1,247 @@
+/* ========================================================
+   SIMAWA — Employee Management System PT MAKMUR
+   Stylesheet Halaman Login & Background Mesh
+   ======================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body.login-page {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    color: #f8fafc;
+    min-height: 100vh;
+    background-color: #05070c !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background Polygonal Mesh (Geometric Glow) */
+.bg-mesh-wrap {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bg-mesh-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Login Container */
+.login-container {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Kotak Login Glossy / Glassmorphism */
+.glass-login-card {
+    width: 100%;
+    max-width: 430px;
+    background: rgba(14, 18, 28, 0.58);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 2.25rem 1.85rem;
+    box-shadow:
+        0 30px 60px -12px rgba(0, 0, 0, 0.75),
+        0 18px 36px -18px rgba(0, 0, 0, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+/* Header SIMAWA (Proporsional & Center) */
+.auth-header {
+    text-align: center;
+    margin-bottom: 1.85rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.brand-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #ffffff 40%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.35rem;
+    filter: drop-shadow(0 2px 10px rgba(249, 115, 22, 0.25));
+}
+
+.brand-desc {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.45rem;
+    letter-spacing: 0.3px;
+    text-align: center;
+}
+
+.brand-company {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #f97316;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 3px 12px;
+    background: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 20px;
+    text-align: center;
+}
+
+/* Label Form Ringkas */
+.form-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #f97316;
+    margin-bottom: 0.45rem;
+    display: block;
+}
+
+.form-label .required {
+    color: #ea580c;
+    margin-left: 2px;
+}
+
+/* Input Form Glossy / Transparan */
+.glass-input {
+    background-color: rgba(0, 0, 0, 0.45) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 0.72rem 1rem !important;
+    font-size: 0.92rem !important;
+    width: 100%;
+    transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+    background-color: rgba(0, 0, 0, 0.65) !important;
+    border-color: #f97316 !important;
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.3) !important;
+    color: #ffffff !important;
+}
+
+.glass-input::placeholder {
+    color: #64748b !important;
+}
+
+/* Password Wrap */
+.password-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrap .glass-input {
+    padding-right: 2.75rem !important;
+}
+
+.btn-toggle-eye {
+    position: absolute;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    padding: 4px 6px;
+    font-size: 1.05rem;
+    cursor: pointer;
+    z-index: 5;
+    transition: color 0.15s ease;
+}
+
+.btn-toggle-eye:hover {
+    color: #f97316;
+}
+
+/* Checkbox & Forgot Password */
+.glass-check {
+    background-color: rgba(0, 0, 0, 0.45);
+    border-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
+.glass-check:checked {
+    background-color: #f97316;
+    border-color: #f97316;
+}
+
+.check-label {
+    color: #cbd5e1 !important;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+}
+
+.forgot-link {
+    color: #f97316 !important;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0.85;
+}
+
+.forgot-link:hover {
+    opacity: 1;
+    text-decoration: underline !important;
+}
+
+/* Tombol Masuk */
+.btn-masuk {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    border: none;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 18px rgba(249, 115, 22, 0.4);
+    transition: all 0.2s ease;
+}
+
+.btn-masuk:hover {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    box-shadow: 0 6px 24px rgba(249, 115, 22, 0.55);
+    transform: translateY(-1px);
+}
+
+/* Footer Sesuai Permintaan */
+.auth-footer {
+    color: #64748b;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    margin-top: 1.65rem;
+    text-align: center;
+}

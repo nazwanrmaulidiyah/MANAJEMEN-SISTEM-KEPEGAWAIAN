@@ -1,0 +1,2357 @@
+/* ========================================================
+   SIMAWA — Employee Management System PT MAKMUR
+   User-Friendly Theme: High-Contrast Dark & Professional Light
+   ======================================================== */
+
+/* --------------------------------------------------------
+   1. Theme Variables (Default: High-Contrast Dark)
+   -------------------------------------------------------- */
+:root,
+[data-theme="dark"] {
+    --bg-main: #141724;
+    --bg-surface: #10121d;
+    --bg-card: #10121d;
+    --bg-card-hover: #161928;
+    --bg-input: #10121d;
+    --border-color: rgba(255, 255, 255, 0.07);
+    --border-strong: #242942;
+    --border-accent: rgba(249, 115, 22, 0.45);
+    --accent-primary: #f97316;
+    --accent-secondary: #ea580c;
+    --accent-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    --accent-glow: 0 0 20px rgba(249, 115, 22, 0.35);
+
+    /* High-contrast typography */
+    --text-primary: #ffffff;
+    --text-secondary: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-hint: #64748b;
+
+    /* Components Harmonized to Deep Slate */
+    --table-head-bg: #141724;
+    --table-head-color: #cbd5e1;
+    --table-row-hover: rgba(249, 115, 22, 0.06);
+    --sidebar-bg: #10121d;
+    --navbar-bg: rgba(16, 18, 29, 0.95);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+
+    --sidebar-width: 260px;
+    --navbar-height: 70px;
+    --transition-speed: 0.25s;
+}
+
+[data-theme="light"] {
+    --bg-main: #f1f5f9;
+    --bg-surface: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --bg-input: #ffffff;
+    --border-color: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --border-accent: rgba(249, 115, 22, 0.5);
+    --accent-primary: #ea580c;
+    --accent-secondary: #c2410c;
+    --accent-gradient: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    --accent-glow: 0 4px 15px rgba(234, 88, 12, 0.25);
+
+    /* Crisp light typography */
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #475569;
+    --text-hint: #64748b;
+
+    /* Components */
+    --table-head-bg: #f8fafc;
+    --table-head-color: #1e293b;
+    --table-row-hover: #f1f5f9;
+    --sidebar-bg: #ffffff;
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* --------------------------------------------------------
+   2. Global Reset & Base
+   -------------------------------------------------------- */
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-primary);
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: #fb923c;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-strong);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary);
+}
+
+/* --------------------------------------------------------
+   3. Sidebar Navigation
+   -------------------------------------------------------- */
+.sidebar {
+    width: var(--sidebar-width);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: var(--sidebar-bg);
+    border-right: none !important;
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+    transition: transform var(--transition-speed) ease;
+}
+
+.sidebar-brand {
+    height: var(--navbar-height);
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem;
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.sidebar-logo-img {
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    margin-right: 0.75rem;
+    filter: drop-shadow(0 2px 8px rgba(249, 115, 22, 0.45));
+    transition: transform 0.2s ease;
+}
+
+.sidebar-brand:hover .sidebar-logo-img {
+    transform: scale(1.06);
+}
+
+.sidebar-brand-text {
+    font-size: 1.7rem;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    color: #ffffff;
+    line-height: 1;
+    display: inline-block;
+    transition: color 0.2s ease;
+}
+
+[data-theme="light"] .sidebar-brand-text {
+    color: #0f172a;
+}
+
+.sidebar-brand i {
+    font-size: 1.6rem;
+    color: var(--accent-primary);
+    margin-right: 0.75rem;
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.5));
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 1rem 0.75rem;
+    margin: 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar-menu .menu-header {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    padding: 0.75rem 0.75rem 0.35rem;
+}
+
+.sidebar-menu .nav-item {
+    margin-bottom: 0.35rem;
+}
+
+.sidebar-menu .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    color: #cbd5e1;
+    font-weight: 600;
+    font-size: 0.92rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.sidebar-menu .nav-link i {
+    font-size: 1.15rem;
+    margin-right: 0.85rem;
+    width: 24px;
+    text-align: center;
+    color: #94a3b8;
+    transition: color var(--transition-speed) ease;
+}
+
+.sidebar-menu .nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-menu .nav-link:hover i {
+    color: var(--accent-primary);
+}
+
+.sidebar-menu .nav-link.active {
+    color: #ffffff;
+    background: var(--accent-gradient);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+}
+
+.sidebar-menu .nav-link.active i {
+    color: #ffffff;
+}
+
+.sidebar-footer {
+    padding: 1rem 1.25rem;
+    border-top: none !important;
+    background: transparent !important;
+}
+
+/* --------------------------------------------------------
+   4. Top Navbar
+   -------------------------------------------------------- */
+.main-wrapper {
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left var(--transition-speed) ease;
+}
+
+.top-navbar {
+    height: var(--navbar-height);
+    background: var(--bg-main);
+    border-bottom: none;
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    box-shadow: none;
+}
+
+.navbar-title {
+    color: var(--text-primary) !important;
+    font-weight: 800;
+    font-size: 1.45rem;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+}
+
+.navbar-subtitle {
+    color: var(--text-muted) !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 2px;
+}
+
+.btn-theme-toggle {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-theme-toggle:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-primary);
+    transform: scale(1.05);
+}
+
+.badge-portal {
+    background: rgba(249, 115, 22, 0.12);
+    color: var(--accent-primary);
+    border: 1px solid rgba(249, 115, 22, 0.35);
+    font-weight: 600;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+}
+
+.content-body {
+    flex: 1;
+    padding: 1.75rem 1.5rem;
+}
+
+/* --------------------------------------------------------
+   5. Cards & Containers
+   -------------------------------------------------------- */
+.card-ems {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+    overflow: hidden;
+}
+
+.card-ems:hover {
+    border-color: var(--border-accent);
+}
+
+.card-ems-interactive:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 20px rgba(249, 115, 22, 0.15);
+    border-color: var(--accent-primary);
+}
+
+.card-ems-header {
+    padding: 1.15rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-ems-body {
+    padding: 1.5rem;
+}
+
+/* Stat Cards */
+.stat-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.icon-orange {
+    background: rgba(249, 115, 22, 0.15);
+    color: var(--accent-primary);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+}
+
+.icon-blue {
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.icon-emerald {
+    background: rgba(16, 185, 129, 0.15);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.icon-purple {
+    background: rgba(168, 85, 247, 0.15);
+    color: #c084fc;
+    border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+/* --------------------------------------------------------
+   6. Buttons & Interactive Elements
+   -------------------------------------------------------- */
+.btn-orange {
+    background: var(--accent-gradient);
+    color: #ffffff !important;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-orange:hover,
+.btn-orange:focus {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    color: #ffffff !important;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+    transform: translateY(-1px);
+}
+
+.btn-outline-orange {
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-outline-orange:hover {
+    background: var(--accent-primary);
+    color: #ffffff;
+    box-shadow: var(--accent-glow);
+}
+
+.btn-dark-subtle {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-dark-subtle:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
+}
+
+/* User-friendly Action Pill Buttons */
+.btn-action-detail {
+    background: rgba(14, 165, 233, 0.12);
+    color: #0284c7 !important;
+    border: 1px solid rgba(14, 165, 233, 0.4);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-action-detail:hover {
+    background: #0284c7;
+    color: #ffffff !important;
+    border-color: #0284c7;
+    box-shadow: 0 3px 10px rgba(2, 132, 199, 0.35);
+}
+
+.btn-action-edit {
+    background: rgba(245, 158, 11, 0.12);
+    color: #d97706 !important;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-action-edit:hover {
+    background: #d97706;
+    color: #ffffff !important;
+    border-color: #d97706;
+    box-shadow: 0 3px 10px rgba(217, 119, 6, 0.35);
+}
+
+.btn-action-delete {
+    background: rgba(239, 68, 68, 0.12);
+    color: #dc2626 !important;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-action-delete:hover {
+    background: #dc2626;
+    color: #ffffff !important;
+    border-color: #dc2626;
+    box-shadow: 0 3px 10px rgba(220, 38, 38, 0.35);
+}
+
+[data-theme="dark"] .btn-action-detail {
+    color: #38bdf8 !important;
+}
+
+[data-theme="dark"] .btn-action-detail:hover {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-action-edit {
+    color: #fbbf24 !important;
+}
+
+[data-theme="dark"] .btn-action-edit:hover {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .btn-action-delete {
+    color: #f87171 !important;
+}
+
+[data-theme="dark"] .btn-action-delete:hover {
+    color: #ffffff !important;
+}
+
+/* --------------------------------------------------------
+   7. Form Elements (High Contrast & Clear Boundaries)
+   -------------------------------------------------------- */
+.form-ems-label {
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.form-ems-label .required {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+.form-ems-control,
+.form-ems-select {
+    background-color: var(--bg-input) !important;
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px;
+    padding: 0.68rem 1rem;
+    font-size: 0.92rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.form-ems-control:focus,
+.form-ems-select:focus {
+    background-color: var(--bg-input) !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25) !important;
+    color: var(--text-primary) !important;
+}
+
+.form-ems-control::placeholder {
+    color: var(--text-hint) !important;
+    opacity: 1;
+}
+
+.search-input-group .search-icon {
+    background-color: var(--bg-input) !important;
+    border: 1px solid var(--border-strong) !important;
+    border-right: none !important;
+    color: var(--accent-primary) !important;
+    font-size: 1rem;
+}
+
+.search-input-group .form-ems-control {
+    border-left: none !important;
+}
+
+.btn-reset-filter {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.btn-reset-filter:hover {
+    background: #ef4444;
+    color: #ffffff;
+    border-color: #ef4444;
+}
+
+/* --------------------------------------------------------
+   8. Tables (High-Contrast & Easy on Eyes)
+   -------------------------------------------------------- */
+.table-ems {
+    width: 100%;
+    margin-bottom: 0;
+    color: var(--text-primary);
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-ems thead th {
+    background: var(--table-head-bg);
+    color: var(--table-head-color);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 1rem 1.25rem;
+    border-bottom: 2px solid var(--border-strong);
+    white-space: nowrap;
+}
+
+.table-ems tbody td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+    font-size: 0.92rem;
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.table-ems tbody tr {
+    transition: background-color var(--transition-speed) ease;
+}
+
+.table-ems tbody tr:hover {
+    background-color: var(--table-row-hover);
+}
+
+.table-ems tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Badges */
+.badge-nip {
+    display: inline-block;
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 5px;
+    padding: 2px 7px;
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+}
+
+.badge-dept {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+[data-theme="light"] .badge-dept {
+    background: #dbeafe;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+
+.text-contact-item {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.text-contact-item a {
+    color: var(--text-secondary);
+}
+
+.text-contact-item a:hover {
+    color: var(--accent-primary);
+}
+
+/* --------------------------------------------------------
+   9. Pagination
+   -------------------------------------------------------- */
+.pagination-ems .page-link {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    padding: 0.45rem 0.85rem;
+    margin: 0 2px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.pagination-ems .page-link:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
+}
+
+.pagination-ems .page-item.active .page-link {
+    background: var(--accent-gradient);
+    border-color: var(--accent-primary);
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(249, 115, 22, 0.35);
+}
+
+/* --------------------------------------------------------
+   10. Animations & Responsive
+   -------------------------------------------------------- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 {
+    animation-delay: 0.06s;
+}
+
+.delay-2 {
+    animation-delay: 0.12s;
+}
+
+.delay-3 {
+    animation-delay: 0.18s;
+}
+
+.delay-4 {
+    animation-delay: 0.24s;
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-wrapper {
+        margin-left: 0;
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1035;
+        display: none;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
+    }
+}
+
+/* ========================================================
+   11. Modern Unified Table Sheet (Anti-AI-Slop Architecture)
+   Inspired by Linear / Stripe: Single Canvas, De-boxed Data
+   ======================================================== */
+
+.sheet-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+    transition: border-color var(--transition-speed) ease;
+}
+
+/* --- Integrated Toolbar --- */
+.sheet-toolbar {
+    padding: 1.1rem 1.35rem;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.toolbar-search-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    flex: 1;
+    min-width: 280px;
+}
+
+/* Integrated Search Input */
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+    max-width: 420px;
+}
+
+.search-box-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.search-box-input {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    border-radius: 9px;
+    padding: 0.58rem 2.2rem 0.58rem 2.3rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.search-box-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+.search-box-input:focus+.search-box-icon {
+    color: var(--accent-primary);
+}
+
+.search-box-input::placeholder {
+    color: var(--text-hint);
+    font-size: 0.85rem;
+}
+
+.search-box-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.15s ease;
+}
+
+.search-box-clear:hover {
+    color: #ef4444;
+}
+
+/* Department Dropdown */
+.filter-dropdown-wrapper {
+    position: relative;
+    min-width: 190px;
+}
+
+.filter-dropdown-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    pointer-events: none;
+}
+
+.filter-dropdown-select {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    border-radius: 9px;
+    padding: 0.58rem 2rem 0.58rem 2.1rem;
+    font-size: 0.86rem;
+    font-weight: 500;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2394a3b8'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.filter-dropdown-select:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2);
+}
+
+/* Toolbar Buttons */
+.btn-filter-action {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    font-weight: 600;
+    padding: 0.58rem 0.95rem;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-filter-action:hover {
+    background: var(--bg-card-hover);
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
+}
+
+.btn-filter-reset {
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    font-weight: 500;
+    padding: 0.58rem 0.85rem;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+.btn-filter-reset:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border-color: #ef4444;
+    border-style: solid;
+}
+
+/* Toolbar Right Meta */
+.toolbar-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.record-counter {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.45rem 0.85rem;
+    border-radius: 20px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.counter-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px #10b981;
+}
+
+.btn-sheet-add {
+    background: var(--accent-gradient);
+    color: #ffffff !important;
+    border: none;
+    font-weight: 600;
+    font-size: 0.86rem;
+    padding: 0.58rem 1.15rem;
+    border-radius: 9px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.28);
+    transition: all 0.2s ease;
+}
+
+.btn-sheet-add:hover {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.45);
+    transform: translateY(-1px);
+    color: #ffffff !important;
+}
+
+/* --- De-boxed Modern Table --- */
+.table-modern {
+    width: 100%;
+    margin-bottom: 0;
+    border-collapse: collapse;
+}
+
+.table-modern thead th {
+    background: var(--table-head-bg);
+    color: var(--table-head-color);
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.95rem 1.35rem;
+    border-bottom: 1px solid var(--border-strong);
+    white-space: nowrap;
+}
+
+.table-modern tbody td {
+    padding: 1.1rem 1.35rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+    font-size: 0.9rem;
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.table-modern tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-modern tbody tr.table-row-hover {
+    transition: background-color 0.15s ease;
+}
+
+.table-modern tbody tr.table-row-hover:hover {
+    background-color: var(--table-row-hover);
+}
+
+/* Column 1: Identity & De-boxed NIP */
+.avatar-modern {
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-strong);
+    flex-shrink: 0;
+}
+
+.emp-name-link {
+    font-weight: 600;
+    font-size: 0.94rem;
+    color: var(--text-primary);
+    display: block;
+    line-height: 1.3;
+    transition: color 0.15s ease;
+}
+
+.emp-name-link:hover {
+    color: var(--accent-primary);
+}
+
+/* Monospace Tabular NIP (Clean, No Box Border) */
+.emp-nip-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+    display: block;
+}
+
+/* Column 2: Contact Item */
+.emp-contact-item {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.emp-contact-item i {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    width: 14px;
+    text-align: center;
+}
+
+.emp-contact-item a {
+    color: var(--text-secondary);
+    transition: color 0.15s ease;
+}
+
+.emp-contact-item a:hover {
+    color: var(--accent-primary);
+}
+
+.emp-contact-item.text-phone span {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* Column 3: Jabatan & De-boxed Dot Indicator */
+.emp-jabatan-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.dept-dot-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 2px 9px 2px 7px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+}
+
+[data-theme="light"] .dept-dot-indicator {
+    background: #f1f5f9;
+    color: #334155;
+    border-color: #e2e8f0;
+}
+
+.dept-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.dept-dot.dot-hr {
+    background: #10b981;
+    box-shadow: 0 0 7px rgba(16, 185, 129, 0.55);
+}
+
+.dept-dot.dot-it {
+    background: #3b82f6;
+    box-shadow: 0 0 7px rgba(59, 130, 246, 0.55);
+}
+
+.dept-dot.dot-finance {
+    background: #f59e0b;
+    box-shadow: 0 0 7px rgba(245, 158, 11, 0.55);
+}
+
+.dept-dot.dot-marketing {
+    background: #ec4899;
+    box-shadow: 0 0 7px rgba(236, 72, 153, 0.55);
+}
+
+.dept-dot.dot-ops {
+    background: #8b5cf6;
+    box-shadow: 0 0 7px rgba(139, 92, 246, 0.55);
+}
+
+.dept-dot.dot-design {
+    background: #06b6d4;
+    box-shadow: 0 0 7px rgba(6, 182, 212, 0.55);
+}
+
+.dept-dot.dot-general {
+    background: #94a3b8;
+    box-shadow: 0 0 7px rgba(148, 163, 184, 0.4);
+}
+
+/* Column 4: Date */
+.emp-date-text {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.emp-date-text i {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* Column 5: Ghost Action Bar (Precision Tools) */
+.action-btn-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.action-btn-item {
+    width: 33px;
+    height: 33px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="light"] .action-btn-item {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    color: #64748b;
+}
+
+/* Hover States with Soft Glow */
+.action-btn-item.action-btn-view:hover {
+    background: rgba(14, 165, 233, 0.12);
+    border-color: rgba(14, 165, 233, 0.4);
+    color: #38bdf8 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(14, 165, 233, 0.25);
+}
+
+.action-btn-item.action-btn-edit:hover {
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fbbf24 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(245, 158, 11, 0.25);
+}
+
+.action-btn-item.action-btn-delete:hover {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #f87171 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 10px rgba(239, 68, 68, 0.25);
+}
+
+/* Sheet Footer / Pagination Area */
+.sheet-footer {
+    padding: 1rem 1.35rem;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+}
+
+.sheet-footer-text {
+    font-size: 0.84rem;
+    color: var(--text-muted);
+}
+
+/* ========================================================
+   12. Enterprise & Gov UI Extensions (SIPANDU Standard)
+   ======================================================== */
+
+/* --- User Profile Dropdown di Top Navbar Kanan Atas (Sesuai Referensi Gambar) --- */
+.btn-user-pill {
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+    padding: 0.32rem 0.65rem 0.32rem 0.45rem;
+    border-radius: 8px;
+    /* Rounded rectangle sesuai gambar */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .btn-user-pill {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    color: #1e293b;
+}
+
+.btn-user-pill:hover,
+.btn-user-pill:focus {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] .btn-user-pill:hover,
+[data-theme="light"] .btn-user-pill:focus {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #0f172a;
+}
+
+.btn-user-pill::after {
+    display: none;
+    /* Hilangkan panah default bootstrap */
+}
+
+.user-initial-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background-color: #b08968;
+    /* Warna cokelat/tan hangat sesuai gambar referensi */
+    color: #ffffff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.user-name-text {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: inherit;
+}
+
+.user-caret-icon {
+    font-size: 0.65rem;
+    color: inherit;
+    opacity: 0.75;
+}
+
+/* Dropdown Menu Pengguna */
+.user-dropdown-menu {
+    min-width: 230px;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="light"] .user-dropdown-menu {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.user-dropdown-header {
+    padding: 0.9rem 1rem;
+    list-style: none;
+}
+
+.user-dropdown-name {
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+[data-theme="light"] .user-dropdown-name {
+    color: #0f172a;
+}
+
+.user-dropdown-email {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-top: 3px;
+    word-break: break-all;
+}
+
+[data-theme="light"] .user-dropdown-email {
+    color: #64748b;
+}
+
+.user-dropdown-item {
+    padding: 0.65rem 1rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444 !important;
+    transition: background-color 0.15s ease;
+}
+
+.user-dropdown-item:hover {
+    background-color: rgba(239, 68, 68, 0.08);
+    color: #dc2626 !important;
+}
+
+[data-theme="light"] .user-dropdown-item:hover {
+    background-color: #fef2f2;
+}
+
+/* --- Section Accent Bar (Garis Tegak Hijau/Oranye ala SIPANDU) --- */
+.section-title-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-accent-bar {
+    width: 4px;
+    height: 18px;
+    background: var(--accent-primary);
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.section-title-text {
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.04em;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+/* --- Large Stat Cards di Atas Filter (Sesuai Persis Gambar 2 Pengguna) --- */
+.stat-large-card,
+.stat-mini-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.35rem 1.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.stat-large-card:hover,
+.stat-mini-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+}
+
+.stat-large-info,
+.stat-mini-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-large-caption,
+.stat-mini-caption {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.stat-large-number,
+.stat-mini-number {
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin: 4px 0 6px 0;
+}
+
+.stat-large-sub {
+    font-size: 0.82rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+.stat-large-icon,
+.stat-mini-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.55rem;
+    flex-shrink: 0;
+}
+
+.icon-soft-orange {
+    background: rgba(249, 115, 22, 0.12);
+    color: var(--accent-primary);
+    border: 1px solid rgba(249, 115, 22, 0.25);
+}
+
+.icon-soft-blue {
+    background: rgba(59, 130, 246, 0.12);
+    color: #60a5fa;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.icon-soft-emerald {
+    background: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.icon-soft-purple {
+    background: rgba(168, 85, 247, 0.12);
+    color: #c084fc;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+/* --- Tombol Cari & Reset Icon Box (Sudut Rounded Lembut ala Gambar Referensi) --- */
+.btn-search-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--accent-gradient);
+    border: none;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+}
+
+.btn-search-icon:hover {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.5);
+}
+
+.btn-reset-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-reset-icon:hover {
+    background: rgba(239, 68, 68, 0.12);
+    color: #ef4444;
+    border-color: #ef4444;
+    transform: translateY(-1px);
+}
+
+/* --- Tombol Download Data Excel (Pojok Kanan Tabel) --- */
+.btn-excel {
+    background: var(--accent-gradient);
+    color: #ffffff !important;
+    border: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.45rem 1rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
+    transition: all 0.2s ease;
+}
+
+.btn-excel:hover,
+.btn-excel:focus {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.5);
+}
+
+/* --- Departemen Tag (Tanpa Titik Membingungkan) --- */
+.emp-dept-tag {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #60a5fa;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    padding: 3px 9px;
+    border-radius: 8px;
+}
+
+[data-theme="light"] .emp-dept-tag {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #dbeafe;
+}
+
+/* --- Tanggal Masuk Bersih Tanpa Ikon --- */
+.text-date-clean {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* --- Tombol Aksi Kotak dengan Sudut Rounded Lembut (10px) & Warna Berbeda --- */
+.btn-action-box {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.92rem;
+    border: none;
+    cursor: pointer;
+    color: #ffffff !important;
+    transition: all 0.18s ease;
+}
+
+/* Detail: Kotak Biru Cyan Solid */
+.btn-box-detail {
+    background: #0284c7;
+    box-shadow: 0 2px 7px rgba(2, 132, 199, 0.35);
+}
+
+.btn-box-detail:hover {
+    background: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.55);
+}
+
+/* Edit: Kotak Oranye Amber Solid */
+.btn-box-edit {
+    background: #f97316;
+    box-shadow: 0 2px 7px rgba(249, 115, 22, 0.35);
+}
+
+.btn-box-edit:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.55);
+}
+
+/* Hapus: Kotak Merah Crimson Solid (AJAX) */
+.btn-box-delete {
+    background: #ef4444;
+    box-shadow: 0 2px 7px rgba(239, 68, 68, 0.35);
+}
+
+.btn-box-delete:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.55);
+}
+
+/* --- Tombol Batal Merah Tegas (Modern Solid Red) --- */
+.btn-danger-custom {
+    background-color: #ef4444;
+    color: #ffffff !important;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.65rem 1.6rem;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.35);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-danger-custom:hover,
+.btn-danger-custom:focus {
+    background-color: #dc2626;
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.55);
+}
+
+/* --- Sub-Header Bagian Form (Gaya SIPANDU Modern) --- */
+.form-sub-header {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: #f97316;
+    padding: 6px 12px;
+    background: rgba(249, 115, 22, 0.08);
+    border-left: 3px solid #f97316;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 0.6rem;
+}
+
+[data-theme="light"] .form-sub-header {
+    background: #fff7ed;
+    color: #ea580c;
+    border-left-color: #ea580c;
+}
+
+/* --- Frame Upload Foto Profil Pegawai --- */
+.upload-photo-frame {
+    background: var(--bg-input);
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    height: 100%;
+    min-height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+}
+
+[data-theme="light"] .upload-photo-frame {
+    background: #ffffff;
+    border-color: var(--border-strong);
+}
+
+.upload-photo-frame:hover {
+    border-color: var(--accent-primary);
+}
+
+.upload-photo-frame .form-ems-control[type="file"] {
+    font-size: 0.82rem;
+    padding: 0.45rem 0.6rem;
+}
+
+/* --- Master User SIPANDU Style Components --- */
+.btn-tambah-user {
+    background: var(--accent-gradient);
+    color: #ffffff !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.48rem 1.2rem;
+    border-radius: 10px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.35);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-tambah-user:hover {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.55);
+}
+
+.btn-box-key {
+    background: #0284c7;
+    box-shadow: 0 2px 7px rgba(2, 132, 199, 0.35);
+}
+
+.btn-box-key i {
+    display: inline-block;
+    transform: rotate(90deg);
+    /* Menghadap ke bawah sesuai permintaan */
+}
+
+.btn-box-key:hover {
+    background: #0369a1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.55);
+}
+
+.role-indicator-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.dot-superadmin {
+    background: #3b82f6;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.6);
+}
+
+.dot-admin {
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+}
+
+.dot-operator {
+    background: #f59e0b;
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.6);
+}
+
+.dot-system {
+    background: #8b5cf6;
+    box-shadow: 0 0 6px rgba(139, 92, 246, 0.6);
+}
+
+/* Theme-Harmonized Bootstrap 5 Modal */
+.modal-content {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-strong) !important;
+    color: var(--text-primary) !important;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color) !important;
+    padding: 1.15rem 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--border-color) !important;
+    padding: 1rem 1.5rem;
+}
+
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* --- Stat Cards Gaya Gambar 2 (Vibrant Circular Icon on Left) --- */
+.stat-card-sipandu2 {
+    border-radius: 14px;
+    padding: 1.15rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    transition: all 0.22s ease;
+    box-shadow: var(--card-shadow);
+    height: 100%;
+    text-decoration: none !important;
+}
+
+.stat-card-sipandu2:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25);
+}
+
+.stat-icon-circle {
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #ffffff !important;
+}
+
+.stat-content-sipandu2 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.stat-label-sipandu2 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.stat-value-sipandu2 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--text-primary);
+}
+
+.stat-value-sipandu2 .stat-unit {
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-left: 3px;
+    color: var(--text-muted);
+}
+
+.stat-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.74rem;
+    font-weight: 600;
+    padding: 2px 9px;
+    border-radius: 20px;
+    margin-top: 5px;
+    width: fit-content;
+}
+
+/* Card Themes */
+/* 1. Green Theme (Total Pegawai) */
+.stat-card-green {
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.28);
+}
+
+[data-theme="light"] .stat-card-green {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.stat-card-green .stat-icon-circle {
+    background: #10b981;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+}
+
+.stat-card-green .stat-label-sipandu2 {
+    color: #10b981;
+}
+
+[data-theme="light"] .stat-card-green .stat-label-sipandu2 {
+    color: #065f46;
+}
+
+.stat-card-green .stat-pill-badge {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+[data-theme="light"] .stat-card-green .stat-pill-badge {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* 2. Amber/Orange Theme (Divisi/Dept) */
+.stat-card-amber {
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.28);
+}
+
+[data-theme="light"] .stat-card-amber {
+    background: #fffbeb;
+    border-color: #fde68a;
+}
+
+.stat-card-amber .stat-icon-circle {
+    background: #f59e0b;
+    box-shadow: 0 4px 14px rgba(245, 158, 11, 0.4);
+}
+
+.stat-card-amber .stat-label-sipandu2 {
+    color: #f59e0b;
+}
+
+[data-theme="light"] .stat-card-amber .stat-label-sipandu2 {
+    color: #92400e;
+}
+
+.stat-card-amber .stat-pill-badge {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+[data-theme="light"] .stat-card-amber .stat-pill-badge {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* 3. Rose/Pink Theme (Bulan Ini) */
+.stat-card-rose {
+    background: rgba(244, 63, 94, 0.08);
+    border: 1px solid rgba(244, 63, 94, 0.28);
+}
+
+[data-theme="light"] .stat-card-rose {
+    background: #fff1f2;
+    border-color: #fecdd3;
+}
+
+.stat-card-rose .stat-icon-circle {
+    background: #f43f5e;
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.4);
+}
+
+.stat-card-rose .stat-label-sipandu2 {
+    color: #f43f5e;
+}
+
+[data-theme="light"] .stat-card-rose .stat-label-sipandu2 {
+    color: #9f1239;
+}
+
+.stat-card-rose .stat-pill-badge {
+    background: rgba(244, 63, 94, 0.15);
+    color: #f43f5e;
+}
+
+[data-theme="light"] .stat-card-rose .stat-pill-badge {
+    background: #ffe4e6;
+    color: #9f1239;
+}
+
+/* 4. Cyan/Blue Theme (Tahun 2026) */
+.stat-card-cyan {
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.28);
+}
+
+[data-theme="light"] .stat-card-cyan {
+    background: #f0f9ff;
+    border-color: #bae6fd;
+}
+
+.stat-card-cyan .stat-icon-circle {
+    background: #0284c7;
+    box-shadow: 0 4px 14px rgba(14, 165, 233, 0.4);
+}
+
+.stat-card-cyan .stat-label-sipandu2 {
+    color: #0284c7;
+}
+
+[data-theme="light"] .stat-card-cyan .stat-label-sipandu2 {
+    color: #075985;
+}
+
+.stat-card-cyan .stat-pill-badge {
+    background: rgba(14, 165, 233, 0.15);
+    color: #0284c7;
+}
+
+[data-theme="light"] .stat-card-cyan .stat-pill-badge {
+    background: #e0f2fe;
+    color: #075985;
+}
+
+
+
+
+/* ========================================================
+   LIGHT MODE SIDEBAR HARMONIZATION
+   ======================================================== */
+[data-theme="light"] .sidebar {
+    background: #ffffff;
+    border-right-color: #e2e8f0;
+}
+
+[data-theme="light"] .sidebar-brand {
+    color: #0f172a;
+    border-bottom: none;
+}
+
+[data-theme="light"] .sidebar-brand i {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .sidebar-menu .menu-header {
+    color: #64748b;
+}
+
+[data-theme="light"] .sidebar-menu .nav-link {
+    color: #334155;
+}
+
+[data-theme="light"] .sidebar-menu .nav-link i {
+    color: #64748b;
+}
+
+[data-theme="light"] .sidebar-menu .nav-link:hover {
+    color: var(--accent-primary);
+    background: #f8fafc;
+}
+
+[data-theme="light"] .sidebar-menu .nav-link:hover i {
+    color: var(--accent-primary);
+}
+
+[data-theme="light"] .sidebar-menu .nav-link.active {
+    color: #ffffff;
+    background: var(--accent-gradient);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.35);
+}
+
+[data-theme="light"] .sidebar-menu .nav-link.active i {
+    color: #ffffff;
+}
+
+[data-theme="light"] .sidebar-footer {
+    border-top-color: #e2e8f0;
+    background: #f8fafc;
+}
+
+/* Fix NO column visibility across all tables */
+.table-ems td:first-child,
+.table-modern td:first-child {
+    color: var(--text-secondary) !important;
+    font-weight: 600;
+}
+
+/* Navbar user pill — simplified (no Superadmin badge in pill area) */
+.btn-user-pill .user-initials-nav {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid var(--accent-primary);
+}
+
+/* SweetAlert2 Popup Red Confirm Button Override */
+.swal2-actions .swal2-confirm,
+.swal2-styled.swal2-confirm,
+button.swal2-confirm {
+    background-color: #ef4444 !important;
+    border-color: #ef4444 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4) !important;
+}
+
+.swal2-actions .swal2-confirm:hover,
+.swal2-actions .swal2-confirm:focus,
+.swal2-styled.swal2-confirm:hover,
+.swal2-styled.swal2-confirm:focus,
+button.swal2-confirm:hover,
+button.swal2-confirm:focus {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    box-shadow: 0 4px 18px rgba(239, 68, 68, 0.6) !important;
+}
+
+/* SweetAlert2 Popup Orange Cancel Button ("Batal") Override */
+.swal2-actions .swal2-cancel,
+.swal2-styled.swal2-cancel,
+button.swal2-cancel,
+.btn-orange-cancel {
+    background: var(--accent-gradient) !important;
+    background-color: #f97316 !important;
+    border: none !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4) !important;
+    transition: all var(--transition-speed) ease !important;
+}
+
+.swal2-actions .swal2-cancel:hover,
+.swal2-actions .swal2-cancel:focus,
+.swal2-styled.swal2-cancel:hover,
+.swal2-styled.swal2-cancel:focus,
+button.swal2-cancel:hover,
+button.swal2-cancel:focus,
+.btn-orange-cancel:hover,
+.btn-orange-cancel:focus {
+    background: linear-gradient(135deg, #fb923c 0%, #ea580c 100%) !important;
+    background-color: #ea580c !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 18px rgba(249, 115, 22, 0.6) !important;
+    transform: translateY(-1px);
+}
+
+/* --- Global Orange Flash Alert & Notification (Harmonized Brand SIMAWA) --- */
+.alert-orange,
+.alert-success {
+    background: rgba(249, 115, 22, 0.15) !important;
+    border: 1px solid rgba(249, 115, 22, 0.45) !important;
+    color: #ffffff !important;
+    border-radius: 10px !important;
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.15);
+}
+
+[data-theme="light"] .alert-orange,
+[data-theme="light"] .alert-success {
+    background: #fff7ed !important;
+    border-color: #fdba74 !important;
+    color: #9a3412 !important;
+    box-shadow: 0 4px 16px rgba(249, 115, 22, 0.08);
+}
+
+.alert-orange i,
+.alert-success i {
+    color: var(--accent-primary) !important;
+}
+
+.alert-orange .btn-close,
+.alert-success .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.7;
+}
+
+[data-theme="light"] .alert-orange .btn-close,
+[data-theme="light"] .alert-success .btn-close {
+    filter: none;
+    opacity: 0.6;
+}
+
+/* SweetAlert2 Success Icon Orange Override (Bebas Warna Hijau) */
+.swal2-icon.swal2-success {
+    border-color: #f97316 !important;
+    color: #f97316 !important;
+}
+
+.swal2-icon.swal2-success [class^='swal2-success-line'] {
+    background-color: #f97316 !important;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border-color: rgba(249, 115, 22, 0.3) !important;
+}
+
+/* ==========================================================================
+   Pencegahan Autofill Browser Menjadi Putih di Dark Theme
+   ========================================================================== */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #0b0f19 inset !important;
+    -webkit-text-fill-color: #f8fafc !important;
+    caret-color: #f8fafc !important;
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
+[data-theme="light"] input:-webkit-autofill,
+[data-theme="light"] input:-webkit-autofill:hover,
+[data-theme="light"] input:-webkit-autofill:focus,
+[data-theme="light"] input:-webkit-autofill:active,
+[data-theme="light"] textarea:-webkit-autofill,
+[data-theme="light"] select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+    -webkit-text-fill-color: #0f172a !important;
+    caret-color: #0f172a !important;
+}
+
+/* ==========================================================================
+   Harmonisasi Mode Terang (Light Mode Enhancements) Menyeluruh
+   ========================================================================== */
+/* 1. Select Dropdown Options */
+select.form-ems-select option {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+}
+
+[data-theme="light"] select.form-ems-select option {
+    background-color: #ffffff;
+    color: #0f172a;
+}
+
+/* 2. Readonly & Disabled Inputs */
+[data-theme="light"] .form-ems-control[readonly],
+[data-theme="light"] .form-ems-control:disabled {
+    background-color: #f8fafc !important;
+    color: #334155 !important;
+    border-color: #e2e8f0 !important;
+}
+
+/* 3. Badge NIP */
+[data-theme="light"] .badge-nip {
+    background: #f1f5f9;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+
+/* 4. Alert Danger & Info */
+.alert-danger {
+    background: rgba(239, 68, 68, 0.15) !important;
+    border: 1px solid rgba(239, 68, 68, 0.35) !important;
+    color: #fca5a5 !important;
+    border-radius: 10px !important;
+}
+
+[data-theme="light"] .alert-danger {
+    background: #fef2f2 !important;
+    border-color: #fecaca !important;
+    color: #991b1b !important;
+}
+
+.alert-info {
+    background: rgba(14, 165, 233, 0.15) !important;
+    border: 1px solid rgba(14, 165, 233, 0.35) !important;
+    color: #7dd3fc !important;
+    border-radius: 10px !important;
+}
+
+[data-theme="light"] .alert-info {
+    background: #f0f9ff !important;
+    border-color: #bae6fd !important;
+    color: #075985 !important;
+}
+
+/* 5. Tombol Reset Filter */
+[data-theme="light"] .btn-reset-icon {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+[data-theme="light"] .btn-reset-icon:hover {
+    background: #fef2f2;
+    color: #ef4444;
+    border-color: #fca5a5;
+}
+
+/* 6. Border Divider Bawah Tabel */
+[data-theme="light"] .border-secondary.border-opacity-25 {
+    border-color: #e2e8f0 !important;
+}
+
+/* 7. Dropdown Divider */
+[data-theme="light"] .dropdown-divider {
+    border-top-color: #e2e8f0 !important;
+}
+
+/* 8. Pagination */
+[data-theme="light"] .pagination-ems .page-link {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    color: #334155;
+}
+
+[data-theme="light"] .pagination-ems .page-link:hover {
+    background: #fff7ed;
+    border-color: #fdba74;
+    color: #ea580c;
+}
+
+/* 9. Modal Content */
+[data-theme="light"] .modal-content {
+    background-color: #ffffff !important;
+    border-color: #e2e8f0 !important;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12) !important;
+}
+
+[data-theme="light"] .modal-header {
+    border-bottom-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .modal-footer {
+    border-top-color: #e2e8f0 !important;
+    background-color: #f8fafc !important;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+}
+
+/* 10. SweetAlert2 Light Mode Harmonization */
+[data-theme="light"] .swal2-popup {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    border: 1px solid #e2e8f0 !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+[data-theme="light"] .swal2-title {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] .swal2-html-container {
+    color: #475569 !important;
+}
